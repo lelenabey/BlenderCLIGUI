@@ -5,24 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HelloWPFApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="RenderCompanion" Height="450" Width="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" Text="Bomboclat" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <RadioButton x:Name="StillButton" Content="Still" HorizontalAlignment="Left" Margin="202,358,0,0" VerticalAlignment="Top" Click="StillButton_Click"/>
-        <RadioButton x:Name="AnimationButton" Content="Animation" IsChecked="True" HorizontalAlignment="Left" Margin="42,356,0,0" VerticalAlignment="Top" Click="AnimationButton_Click"/>
-        <Button Content="Render" HorizontalAlignment="Left" Margin="717,364,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <ListBox x:Name="ListBox1" Margin="42,121,42,99"/>
-        <TextBox x:Name="blenderDirectory" HorizontalAlignment="Center" Margin="0,50,0,0" Text="C:\Program Files\Blender Foundation\Blender 2.90" TextWrapping="Wrap" VerticalAlignment="Top" Width="520"/>
-        <TextBox x:Name="recentFilesDir" HorizontalAlignment="Center" Margin="0,73,0,0" Text="C:\Users\Infinite\AppData\Roaming\Blender Foundation\Blender\2.90\config\recent-files.txt" TextWrapping="Wrap" VerticalAlignment="Top" Width="520" FontFamily="Segoe UI"/>
-        <Label Content="Blender Directory:" HorizontalAlignment="Left" Margin="34,46,0,0" VerticalAlignment="Top"/>
-        <Label Content="Recent-files.txt:" HorizontalAlignment="Left" Margin="47,69,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="FileType" HorizontalAlignment="Left" Margin="576,363,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-        <CheckBox x:Name="CustomSettings" Content="Custom Settings" HorizontalAlignment="Left" Margin="42,376,0,0" VerticalAlignment="Top" Click="CheckBox_Click"/>
-        <TextBox x:Name="FrameNumber" HorizontalAlignment="Left" Margin="202,376,0,0" Text="Frame#" TextWrapping="Wrap" VerticalAlignment="Top" Width="49" Visibility="Hidden"/>
-        <Label Content="Render Path:" HorizontalAlignment="Left" Margin="61,90,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="RenderPath" HorizontalAlignment="Center" Margin="0,94,0,0" Text="default" TextWrapping="Wrap" VerticalAlignment="Top" Width="520"/>
-        <Button Content="Browse" HorizontalAlignment="Left" Margin="717,88,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
-        <TextBox x:Name="EndFrame" HorizontalAlignment="Left" Margin="269,376,0,0" Text="End#" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Visibility="Hidden"/>
+        <TabControl>
+            <TabItem Header="General">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28*" />
+                        <RowDefinition Height="135*" />
+                        <RowDefinition Height="40*" />
+                    </Grid.RowDefinitions>
+                    <Label HorizontalAlignment="Left" Content="Render Path:" Margin="40,19,0,0" VerticalAlignment="Top" Height="25" Width="80"/>
+                    <Button Content="Browse" HorizontalAlignment="Left" Margin="700,21,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="20"  Width="42"/>
+                    <TextBox x:Name="RenderPath" HorizontalAlignment="Left" Margin="120,23,0,0" Text="default" TextWrapping="Wrap" VerticalAlignment="Top" Width="500" Height="17"/>
 
+                    <ListBox x:Name="ListBox1" Grid.Row="1" Margin="20,0,20,0"/>
+
+                    <RadioButton x:Name="StillButton" Content="Still" HorizontalAlignment="Left"  Margin="200,20,0,0" VerticalAlignment="Top" Click="StillButton_Click"  Grid.Row="2" Width="38" Height="15"/>
+                    <RadioButton x:Name="AnimationButton" Content="Animation" IsChecked="True" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Click="AnimationButton_Click"  Grid.Row="2" Width="74" Height="15"/>
+                    <Button Content="Render" HorizontalAlignment="Left" Margin="700,40,0,0" VerticalAlignment="Top" Click="Button_Click" Grid.Row="2" Width="41" Height="20"/>
+                    <Button Content="Queue" HorizontalAlignment="Left" Margin="650,40,0,0" VerticalAlignment="Top" Click="Button_Click_2" Grid.Row="2" Width="41" Height="20"/>
+
+                    <ComboBox x:Name="FileType" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Visibility="Visible" Grid.Row="2" Margin="397,20,0,0" Height="20"/>
+                    <CheckBox x:Name="CustomSettings" Content="Custom Settings" HorizontalAlignment="Left" Margin="40,40,0,0" VerticalAlignment="Top" Click="CheckBox_Click"  Grid.Row="2" Width="107" Height="15"/>
+                    <TextBox x:Name="FrameNumber" HorizontalAlignment="Left" Margin="200,40,0,0" Text="Frame#" TextWrapping="Wrap" VerticalAlignment="Top" Width="49" Visibility="Visible" Grid.Row="2" Height="18"/>
+
+                    <TextBox x:Name="EndFrame" HorizontalAlignment="Left" Margin="269,40,0,0" Text="End#" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Visibility="Visible" Grid.Row="2" Height="18"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Queue">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28*" />
+                        <RowDefinition Height="135*" />
+                        <RowDefinition Height="40*" />
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="ListBox2" Grid.Row="1" Margin="20,0,20,0"/>
+                    <Button Content="Render" HorizontalAlignment="Left" Margin="700,40,0,0" VerticalAlignment="Top" Click="Queue_Start" Grid.Row="2" Width="41" Height="20"/>
+                    <Button Content="Delete" HorizontalAlignment="Left" Margin="640,40,0,0" VerticalAlignment="Top" Click="Delete_From_Queue" Grid.Row="2" Width="41" Height="20"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Settings">
+                <Grid>
+                    <TextBox x:Name="blenderDirectory" HorizontalAlignment="Center" Margin="0,50,0,0" Text="C:\Program Files\Blender Foundation\Blender 2.90" TextWrapping="Wrap" VerticalAlignment="Top" Width="520"/>
+                    <TextBox x:Name="recentFilesDir" HorizontalAlignment="Center" Margin="0,73,0,0" Text="C:\Users\Infinite\AppData\Roaming\Blender Foundation\Blender\2.90\config\recent-files.txt" TextWrapping="Wrap" VerticalAlignment="Top" Width="520" FontFamily="Segoe UI"/>
+                    <Label Content="Blender Directory:" HorizontalAlignment="Left" Margin="34,46,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Recent-files.txt:" HorizontalAlignment="Left" Margin="47,69,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
