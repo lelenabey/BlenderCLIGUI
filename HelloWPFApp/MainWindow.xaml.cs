@@ -79,10 +79,10 @@ namespace HelloWPFApp
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("https://maker.ifttt.com/trigger/render_done/with/key/cYfoKvm6gdn7e49B2AptS0", content);
+            var response = await client.PostAsync("https://maker.ifttt.com/trigger/render_done/with/key/", content);
 
             var responseString = await response.Content.ReadAsStringAsync();
-            //var responseString = await client.GetStringAsync("https://maker.ifttt.com/trigger/render_done/with/key/cYfoKvm6gdn7e49B2AptS0");
+            //var responseString = await client.GetStringAsync("https://maker.ifttt.com/trigger/render_done/with/key/");
 
             
             this.Dispatcher.Invoke(() =>
